@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>study-edo — демо подписи</title>
+  <style>
+    :root {
+      --bg: #f3f0e8;
+      --ink: #1c1a16;
+      --accent: #0b5f4b;
+      --line: #c9c2b3;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(160deg, #efe8da, #d9e6e1 45%, #f3f0e8);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 0.35rem; color: var(--accent); }
+    p.lead { margin-top: 0; opacity: 0.85; }
+    label { display: block; font-weight: 600; margin: 1rem 0 0.35rem; }
+    textarea, select, input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      font: inherit;
+      background: #fff;
+    }
+    textarea { min-height: 90px; }
+    .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      font: inherit;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+    }
+    button.secondary { background: #3d3a34; }
+    #status {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: rgba(255, 255, 255, 0.7);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    #status.error { border-color: #8b2e2e; }
+  </style>
+  <!-- Актуальный путь к cadesplugin_api.js — из комплекта КриптоПро Browser plug-in -->
+  <script src="https://www.cryptopro.ru/sites/default/files/products/cades/cadesplugin_api.js"></script>
+  <script src="sign.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>study-edo · демо CAdES</h1>
+    <p class="lead">Учебная страница: список сертификатов и detached-подпись текста. Сверяйте API с вашей версией плагина.</p>
+
+    <label for="payload">Текст для подписи</label>
+    <textarea id="payload">study-edo day-17</textarea>
+
+    <div class="row">
+      <button type="button" id="btn-certs">Показать сертификаты</button>
+      <button type="button" id="btn-sign" class="secondary">Подписать (detached)</button>
+    </div>
+
+    <label for="certs">Сертификаты</label>
+    <select id="certs" size="6"></select>
+
+    <label for="signature">Подпись (Base64)</label>
+    <textarea id="signature" readonly placeholder="Появится после подписи"></textarea>
+
+    <div id="status">Статус: ожидание инициализации плагина…</div>
+  </main>
+</body>
+</html>
